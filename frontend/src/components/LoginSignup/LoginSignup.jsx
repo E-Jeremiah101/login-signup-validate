@@ -75,6 +75,9 @@ export default function LoginSignup () {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="header">
+          {action === "Sign Up" ? <div></div> : <h1>Welcome back</h1>}
+          {action === "Login" ? <div></div> : <h1>Become a Member</h1>}
+
           <div className="text">{action}</div>
           <div className="underline"></div>
         </div>
@@ -161,7 +164,15 @@ export default function LoginSignup () {
             Lost Password? <span>Click Here</span>
           </div>
         )}
-        <div className="submit-container">
+
+        <div className="submit-container"></div>
+        <button type="submit" className="submit mainsubmit">
+          {action}
+        </button>
+
+        {action === "Sign Up" ? (
+          <div></div>
+        ) : (
           <div
             type="button"
             className={action === "Login" ? "submit gray" : "submit"}
@@ -169,9 +180,13 @@ export default function LoginSignup () {
               setAction("Sign Up");
             }}
           >
-            Sign Up
+            Don't have an account? Sign Up
           </div>
+        )}
 
+        {action === "Login" ? (
+          <div></div>
+        ) : (
           <div
             type="button"
             className={action === "Sign Up" ? "submit gray" : "submit"}
@@ -179,12 +194,9 @@ export default function LoginSignup () {
               setAction("Login");
             }}
           >
-            Login
+            Already have an account? login
           </div>
-        </div>
-        <button type="submit" className="submit mainsubmit">
-          {action}
-        </button>
+        )}
       </form>
     </div>
   );

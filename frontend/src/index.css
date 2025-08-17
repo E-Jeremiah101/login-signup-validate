@@ -25,7 +25,11 @@ a:hover {
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(#2A0087, #42006C);
+  /* background: linear-gradient(#2A0087, #42006C); */
+  background-image: url('./components/Assets/images/young-woman-having-face-massage-relaxing-spa-salon_176420-7546.avif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 body::-webkit-scrollbar {
   scrollbar-width:none;
