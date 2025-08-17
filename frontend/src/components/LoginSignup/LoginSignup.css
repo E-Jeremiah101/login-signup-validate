@@ -25,6 +25,7 @@ margin-bottom: 20px;
 text-shadow: 2px 2px 5px#a22f05;
 color: #ff7f50;
 margin: 0;
+font-size: 1.8rem;
 
 }
 .form-container h1{
@@ -32,7 +33,7 @@ color: #ff7f50;
 }
 .text{
     color: #FFF;
-    font-size: 48px;
+    font-size: 38px;
     font-weight: 700;
 }
 .underline{
@@ -56,7 +57,7 @@ small{
    font-weight: bold; 
 }
 .inputs{
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 25px;
