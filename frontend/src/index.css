@@ -29,6 +29,7 @@ body {
 }
 body::-webkit-scrollbar {
   scrollbar-width:none;
+}
 
 h1 {
   font-size: 3.2em;
