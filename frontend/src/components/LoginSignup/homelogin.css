@@ -1,0 +1,40 @@
+  .contain-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+   }
+
+    .Best-place {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 3.2rem;
+      text-shadow: 2px 2px 5px#a22f05;
+      font-family: jayMoney;
+    }
+    
+
+    .btn-div{
+    column-gap: 80px;
+    row-gap: 80px;
+    font-size: 0rem;
+    
+    }
+
+    button {
+      width: 110px;
+      padding: 14px;
+      background-color: #ff7f50;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 15px;
+      font-size: 1.1rem;
+    }
+
+    button:hover {
+      background-color: #e8693c;
+    }

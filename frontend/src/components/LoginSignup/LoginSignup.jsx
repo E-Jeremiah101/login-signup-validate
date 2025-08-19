@@ -1,12 +1,31 @@
-
-
-import { useState } from "react";
+import React,{ useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { checkRequired, checkLength, checkEmail } from "./Login.js";
 import './LoginSignup.css'
 
-export default function LoginSignup () {
+export default function LoginSignup ({ action: initialAction}) {
+const location = useLocation();
+  const [action, setAction ] = useState(initialAction||"Sign Up");
 
-  const [action, setAction ] = useState("Sign Up");
+  
+  useEffect(() => {
+    document.body.style.backgroundImage =
+      "url('./src/components/Assets/images/young-woman-having-face-massage-relaxing-spa-salon_176420-7546.avif')";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundRepeat = "no-repeat"
+    document.body.style.backgroundPosition = "center";
+    document.body.style.height = "contain";
+    document.body.style.margin = "0";
+    document.body.style.overflow = "hidden";
+    
+
+    return () => {
+      document.body.style.backgroundImage = "";
+    };
+  }, []);
+
+
+
   const [formData, setFormData] = useState({
   fullName: "",
   userName: "",
@@ -72,6 +91,7 @@ const handleSubmit = (e) => {
   }
 }
 return (
+  
   <div className="container">
     <form onSubmit={handleSubmit}>
       <div className="header">
