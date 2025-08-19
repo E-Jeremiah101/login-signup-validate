@@ -106,18 +106,22 @@ input:focus{
     
 }
 .submit{
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     width: fit-content;
     height: 59px;
     color: #fff;
     border-radius: 50px;
     border: 50px;
-    font-size: 19px;
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
   
+}
+.submit span{
+  margin-left: 5px;
+  color: #4c00b4;
 }
 .gray{
     background:  none;
