@@ -1,3 +1,6 @@
+  body{
+    background-image: url('./src/components/Assets/images/attractive-african-woman-having-massage-relaxing-spa-salon-closed-eyes_176420-13927.avif');
+  }
   .contain-main{
     display: flex;
     justify-content: center;

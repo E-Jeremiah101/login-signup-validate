@@ -5,8 +5,8 @@ const Homelogin = () => {
     
     const navigate = useNavigate();
     useEffect(() => {
-       document.body.style.backgroundImage =
-         "url('./src/components/Assets/images/attractive-african-woman-having-massage-relaxing-spa-salon-closed-eyes_176420-13927.avif')";
+      //  document.body.style.backgroundImage =
+      //    "url('./src/components/Assets/images/attractive-african-woman-having-massage-relaxing-spa-salon-closed-eyes_176420-13927.avif')";
        document.body.style.backgroundSize = "cover";
        document.body.style.backgroundRepeat = "no-repeat";
        document.body.style.backgroundPosition = "center";

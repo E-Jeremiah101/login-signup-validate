@@ -9,8 +9,8 @@ const location = useLocation();
 
   
   useEffect(() => {
-    document.body.style.backgroundImage =
-      "url(src/components/Assets/images/young-woman-having-face-massage-relaxing-spa-salon_176420-7546.avif)";
+    // document.body.style.backgroundImage =
+      // "url(/components/Assets/images/young-woman-having-face-massage-relaxing-spa-salon_176420-7546.avif)";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundRepeat = "no-repeat"
     document.body.style.backgroundPosition = "center";
