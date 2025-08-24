@@ -15,7 +15,7 @@ body::-webkit-scrollbar {
   scrollbar-width:none;
 }
 body{
-  background-image: url(./src/components/Assets/images/young-woman-having-face-massage-relaxing-spa-salon_176420-7546.avif);
+  background-image: url(./components/Assets/images/young-woman-having-face-massage-relaxing-spa-salon_176420-7546.avif);
   background-size : cover;
   background-repeat :no-repeat;
   background-position :center;
