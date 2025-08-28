@@ -1,0 +1,168 @@
+@font-face {
+  font-family: jayMoney;
+  src: url(./components/Assets/fonts/Poppins/Poppins-BoldItalic.ttf);
+}
+/* body{
+  background-image: url(./src/components/Assets/images/young-woman-having-face-massage-relaxing-spa-salon_176420-7546.avif)
+} */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+.container{
+    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    max-width: 350px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    max-height: 100%;
+    overflow: hidden;
+    font-family: jayMoney;
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 0; 
+     
+}
+ h1 {
+text-align: center;
+margin-bottom: 20px;
+text-shadow: 2px 2px 5px#a22f05;
+color: #ff7f50;
+margin: 0;
+font-size: 1.8rem;
+
+}
+
+.form-container h1{
+color: #ff7f50;
+}
+.text{
+    color: #FFF;
+    font-size: 38px;
+    font-weight: 700;
+}
+.underline{
+  width: 61px;
+  height: 6px;
+  background: #ff7f50;;
+  border-radius: 9px;  
+}
+.form-control{
+  position: relative;
+}
+/* Small tag default */
+.form-control small {
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  font-size: 12px;
+  visibility: hidden;
+}
+small{
+   font-weight: bold; 
+}
+.inputs{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    height: 50px;
+   background-color: #fff;
+    border-radius: 6px;
+}
+.input i{
+    margin: 0px 3px;
+    color: black;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+width: 100%;
+padding: 12px;
+border: none;
+border-radius: 6px;
+color: #000;
+font-size: 1.1rem;
+}
+input:focus{
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+.forgot-password{
+    margin-top: 27px;
+    color: #e1c3c3;
+    font-size: 18px;
+}
+.forgot-password span{
+    color: #4c00b4;
+    cursor: pointer;
+}
+.submit-container{
+    display: flex;
+    /* gap: 30px; */
+    /* margin: 60px auto; */
+    
+}
+.submit{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 59px;
+    color: #fff;
+    border-radius: 50px;
+    border: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+  
+}
+.submit span{
+  margin-left: 5px;
+  color: #4c00b4;
+}
+.gray{
+    background:  none;
+    color: #fff;
+}
+/* Error state */
+.form-control.error input {
+  border-color: #e74c3c; /* red border */
+}
+.form-control.error small {
+  color: #e74c3c;
+  visibility: visible;
+}
+
+/* Success state */
+.form-control.success input {
+  border-color: #2ecc71;
+}
+
+.form-control.success small {
+  visibility: hidden;
+}
+ .mainsubmit {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 9px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin:50px 0 9px 0;
+      font-size:1.3rem ;
+      background: #ff7f50;
+      height: 50px;
+    }
