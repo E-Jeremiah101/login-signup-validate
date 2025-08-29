@@ -18,6 +18,9 @@
     overflow: hidden;
     font-family: jayMoney;
 }
+.text-red{
+  color: red;
+}
 .header{
     display: flex;
     flex-direction: column;

@@ -13,9 +13,10 @@ const app = express();
 app.use(cookieParser())
 const PORT = 5000;
 
+
 app.use(cors({origin:process.env.CLIENT_URL, credentials: true}));
 
-app.use(express.json())
+app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send("Hello World.");
@@ -65,10 +66,99 @@ app.post("/api/signup", async (req, res) => {
 
     }
 
-    return res.status(200).json({user: userDoc , message: "User created successfully."})
+    return res.status(200).json({User: userDoc , message: "User created successfully!!"})
    } catch (error) {
     res.status(400).json({message:error.message})
    }
+});
+
+
+
+//THIS IS FOR THE LOGIN
+app.post("/api/login", async (req, res) => {
+    const {email, password} = req.body;
+
+    try {
+        const userDoc = await User.findOne({email});
+
+        //To perform some checks
+
+        if(!userDoc){
+            return res.status(400).json({message: "Invalid credentials."})
+        }
+
+        const isPasswordValid = await bcryptjs.compareSync(password, userDoc.password);
+
+        if(!isPasswordValid){
+            return res.status(400).json({message: "Incorrect password"})
+        }
+
+        //jwt
+        if (userDoc) {
+          const token = jwt.sign({ id: userDoc._id }, process.env.JWT_SECRET, {
+            expiresIn: "7d",
+          });
+          res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+          });
+        }
+
+        return res.status(200).json({
+            user: userDoc, message: "Logged in successfully"
+        });
+    } catch (error) {
+        console.log("Error logging in", error);
+        res.status(400).json({
+            message: error.message
+        });
+    }
+})
+
+
+app.get("/api/fetch-user", async (req, res) => {
+    const {token} = req.cookies;
+    if(!token) {
+        return res.status(401).json({
+            message: "No token provided."
+        })
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+        if(!decoded){
+            return res.status(401).json({
+                message: "Invalid token"
+            })
+        }
+
+        const userDoc = await User.findById(decoded.id).select("-password");
+
+        if(!userDoc){
+            return res.status(400).json({
+                message: "User not found!"
+            })
+        }
+
+        res.status(200).json({user: userDoc })
+    } catch (error) {
+        console.log("Error in fetching the user", error)
+
+        res.status(400).json({
+            message: "error.message"
+        })
+    }
+
+});
+
+app.post("/api/logout", async (req, res) => {
+  res.clearCookie("token")  
+  res.status(200).json({
+    message: "Logged out successfully"
+  });
 })
 
 app.listen(PORT, () => {

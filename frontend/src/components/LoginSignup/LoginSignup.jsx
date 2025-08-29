@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { checkRequired, checkLength, checkEmail } from "./Login.js";
 import "./LoginSignup.css";
 import { useAuthStore } from "../../store/useAuthStore.jsx";
+import toast from "react-hot-toast";
+
 
 export default function LoginSignup({ action: initialAction }) {
   const location = useLocation();
-  const [action, setAction] = useState(initialAction || "Sign Up");
+  const [action, setAction] = useState(initialAction || "Sign Up" );
+  const navigate = useNavigate();
 
-  // ✅ Correct Zustand usage
- const { signup, user, isLoading, error } = useAuthStore();
+  //  Correct Zustand usage
+ const { signup, login, isLoading, error } = useAuthStore();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -17,6 +20,11 @@ export default function LoginSignup({ action: initialAction }) {
     email: "",
     password: "",
   });
+
+
+
+
+
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState({});
@@ -77,12 +85,20 @@ export default function LoginSignup({ action: initialAction }) {
             formData.email,
             formData.password
           );
+          //show success toast
+          toast.success("Signup successfully")
+          // redirect after successful signup
+          navigate("/");
+        } else if (action === "Login") {
+          const {message, user} = await login(formData.email, formData.password);
+          console.log("User: ", user);
+          toast.success(message);
+
+          navigate("/MainPage");
           
-        } else if (login) {
-          await login(formData.email, formData.password);
         } else {
-          console.warn("Login function not implemented yet");
-        }
+          console.warn("Login function not implemented yet"); 
+       }
       } catch (err) {
         console.error("Auth failed:", err);
       }
@@ -156,6 +172,8 @@ export default function LoginSignup({ action: initialAction }) {
               <small>{errors.email}</small>
             </div>
           </div>
+
+          
           <div
             className={`form-control ${
               success.password ? "success" : errors.password ? "error" : ""
@@ -177,9 +195,12 @@ export default function LoginSignup({ action: initialAction }) {
         {action === "Sign Up" ? (
           <div></div>
         ) : (
+          <>
           <div className="forgot-password">
             Lost Password? <span>Click Here</span>
           </div>
+          {error && <p className="text-red">{error}</p>}
+          </>
         )}
 
         <div className="submit-container"></div>
@@ -218,108 +239,3 @@ export default function LoginSignup({ action: initialAction }) {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-// this is for testing purpose only
-
-// import React, { useState } from "react";
-// import { useAuthStore } from "../../store/useAuthStore"; // ✅ named import
-// import { Link, useNavigate } from "react-router-dom";
-// import "./LoginSignup.css";
-
-// function LoginSignup({ action }) {
-//   const navigate = useNavigate();
-
-//   // ✅ Call the zustand store hook correctly
-//   const { signup, user, isLoading, error } = useAuthStore();
-
-//   // form state
-//   const [fullName, setFullName] = useState("");
-//   const [userName, setUserName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     if (action === "Sign Up") {
-//       try {
-//         await signup(fullName, userName, email, password);
-//         navigate("/"); // redirect after successful signup
-//       } catch (err) {
-//         console.error("Signup failed:", err);
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className="form-container">
-//       <h2>{action}</h2>
-
-//       {error && <p style={{ color: "red" }}>{error}</p>}
-//       {isLoading && <p>Loading...</p>}
-
-//       <form onSubmit={handleSubmit}>
-//         {action === "Sign Up" && (
-//           <>
-//             <input
-//               type="text"
-//               placeholder="Full Name"
-//               value={fullName}
-//               onChange={(e) => setFullName(e.target.value)}
-//               required
-//             />
-//             <input
-//               type="text"
-//               placeholder="Username"
-//               value={userName}
-//               onChange={(e) => setUserName(e.target.value)}
-//               required
-//             />
-//           </>
-//         )}
-
-//         <input
-//           type="email"
-//           placeholder="Email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           required
-//         />
-
-//         <input
-//           type="password"
-//           placeholder="Password"
-//           value={password}
-//           onChange={(e) => setPassword(e.target.value)}
-//           required
-//         />
-
-//         <button type="submit" disabled={isLoading}>
-//           {isLoading ? "Please wait..." : action}
-//         </button>
-//       </form>
-
-//       {action === "Sign Up" ? (
-//         <p>
-//           Already have an account? <Link to="/login">Login</Link>
-//         </p>
-//       ) : (
-//         <p>
-//           Don’t have an account? <Link to="/signup">Sign Up</Link>
-//         </p>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default LoginSignup;

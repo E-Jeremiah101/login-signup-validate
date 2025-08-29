@@ -1,38 +1,31 @@
 import './homelogin.css';
 import React, { useEffect } from 'react';
 import { useNavigate }  from 'react-router-dom';
+import { useAuthStore } from '../../store/useAuthStore';
+import toast from 'react-hot-toast';
 const MainPage = () => {
-    
-    const navigate = useNavigate();
-    useEffect(() => {
-      //  document.body.style.backgroundImage =
-      //    "url('./src/components/Assets/images/attractive-african-woman-having-massage-relaxing-spa-salon-closed-eyes_176420-13927.avif')";
-       document.body.style.backgroundSize = "cover";
-       document.body.style.backgroundRepeat = "no-repeat";
-       document.body.style.backgroundPosition = "center";
-       document.body.style.height = "100vh";
-       document.body.style.display = "flex";
-       document.body.style.alignItems = "center";
+  const {user, logout} = useAuthStore()
 
-      return () => {
-        document.body.style.backgroundImage = "";
-      };
-    }, []);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+      const {message} = await logout();
+
+      toast.success(message)
+
+      
+    }
+  navigate("/");
   return (
-    
-    <div className="contain-main">
-      <div>
-        <h1 className='Best-place'>Welcome to Main Page </h1>
-      </div>
+    <>
+      <div className="contain-main">
+        <div>
+          <h1 className="Best-place">Welcome ({user.userName}) </h1>
+        </div>
 
-      <div className="btn-div">
-        {/* Go to signup page */}
-        <button onClick={() => navigate("/signup")}>Signup</button>
-
-        {/* Go to login page */}
-        <button onClick={() => navigate("/login")}>Login</button>
+        <button onClick={handleLogout}>Logout</button>
       </div>
-    </div>
+    </>
   );
 }
 
