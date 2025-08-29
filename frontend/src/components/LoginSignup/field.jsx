@@ -20,7 +20,7 @@ const MainPage = () => {
     <>
       <div className="contain-main">
         <div>
-          <h1 className="Best-place">Welcome ({user.userName}) </h1>
+          <h1 className="Best-place">Welcome <span className='user-name'>{user.userName} </span></h1>
         </div>
 
         <button onClick={handleLogout}>Logout</button>

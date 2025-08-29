@@ -18,7 +18,10 @@
       font-family: jayMoney;
     }
     
-
+    .user-name{
+      text-transform: uppercase;
+      color: aqua;
+    }
     .btn-div{
     column-gap: 80px;
     row-gap: 80px;
